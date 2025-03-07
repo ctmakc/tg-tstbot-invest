@@ -75,3 +75,13 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+import threading
+from server import app  # Импорт Flask-сервера
+
+# Функция для запуска Flask-сервера
+def run_flask():
+    app.run(host="0.0.0.0", port=10000)
+
+# Запускаем сервер в отдельном потоке
+flask_thread = threading.Thread(target=run_flask)
+flask_thread.start()
